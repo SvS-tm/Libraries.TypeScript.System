@@ -1,12 +1,13 @@
 {
-  "name": "@svs-team/library-template",
+  "name": "@svs-team/system",
   "version": "0.0.0",
   "author": "SvS team",
-  "description": "Template for TS library",
+  "description": "Bundle of reusable types & utilities",
   "license": "MIT",
   "keywords": [
     "SvS",
-    "template"
+    "system",
+    "utilities"
   ],
   "scripts": {
     "clean-obj": "rimraf -g \"obj\"",
