@@ -1,26 +1,32 @@
-export type TypeOf<T_Type, T_Path> = 
+import { PathOf } from "./path-of";
+import { StringAsPrimitive } from "./string-as-primitive";
+
+type InternalTypeOf<T_Type, T_Path extends string> = 
 ( 
     T_Path extends `${infer T_Key}..${infer T_Rest}`
         ? never
         : "" extends T_Path
             ? T_Type
             : T_Path extends `${infer T_Key}.${infer T_Rest}`
-                ? T_Key extends keyof T_Type 
-                    ? TypeOf<T_Type[T_Key], T_Rest> extends never
+                ? (StringAsPrimitive<T_Key> & keyof T_Type) extends keyof T_Type 
+                    ? InternalTypeOf<T_Type[StringAsPrimitive<T_Key> & keyof T_Type], T_Rest> extends never
                         ? never
-                        : TypeOf<T_Type[T_Key], T_Rest>
+                        : InternalTypeOf<T_Type[StringAsPrimitive<T_Key> & keyof T_Type], T_Rest>
                     : "" extends T_Key
-                        ? T_Rest extends keyof T_Type
-                            ? T_Type[T_Rest]
-                            : TypeOf<T_Type, T_Rest> extends never
+                        ? (StringAsPrimitive<T_Rest> & keyof T_Type) extends keyof T_Type
+                            ? T_Type[StringAsPrimitive<T_Rest> & keyof T_Type]
+                            : InternalTypeOf<T_Type, T_Rest> extends never
                                 ? never
-                                : TypeOf<T_Type, T_Rest>
+                                : InternalTypeOf<T_Type, T_Rest>
                         : never
-                : T_Path extends keyof T_Type
-                    ? T_Type[T_Path]
+                : (StringAsPrimitive<T_Path> & keyof T_Type) extends keyof T_Type
+                    ? T_Type[StringAsPrimitive<T_Path> & keyof T_Type]
                     : T_Path extends `.${infer T_CleanKey}`
-                        ? T_CleanKey extends keyof T_Type
-                            ? T_Type[T_CleanKey]
+                        ? (StringAsPrimitive<T_CleanKey> & keyof T_Type) extends keyof T_Type
+                            ? T_Type[StringAsPrimitive<T_CleanKey> & keyof T_Type]
                             : never
                         : never
 );
+
+export type TypeOf<T_Type, T_Path extends PathOf<T_Type>> = 
+    InternalTypeOf<T_Type, T_Path>;

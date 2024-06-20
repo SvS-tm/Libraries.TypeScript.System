@@ -1,7 +1,7 @@
 import { isEmpty } from "guards/is-empty";
 import { ItemOf } from "types/collections/item-of";
 import { Emptyable } from "types/emptyable";
-import { SafeOmit } from "types/safe-omit";
+import { SafeOmit } from "types/reflection/safe-omit";
 
 export function omit
 <

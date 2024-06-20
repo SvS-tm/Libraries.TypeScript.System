@@ -1,12 +1,12 @@
-export type IsChar<T_Template extends string> = 
+export type IsChar<T_Template extends string, T_True = true, T_False = false> = 
 (
     T_Template extends `${infer T_First}${infer T_Rest}`
         ? "" extends T_Rest
             ? "" extends T_First
-                ? false
-                : true
+                ? T_False
+                : T_True
             : "" extends T_First
-                ? true
-                : false
-        : false
+                ? T_True
+                : T_False
+        : T_False
 );

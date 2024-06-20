@@ -1,21 +1,21 @@
 import { IsChar } from "./is-char";
 
-export type CharSetOf<TValue extends string> = 
+export type CharSetOf<T_Value extends string> = 
 (
-    TValue extends `${infer TLeft}${infer TRight}`
+    T_Value extends `${infer T_Left}${infer T_Right}`
         ? 
         (
             (
-                IsChar<TLeft> extends true 
-                    ? TLeft 
-                    : CharSetOf<TLeft>
+                IsChar<T_Left> extends true 
+                    ? T_Left 
+                    : CharSetOf<T_Left>
             ) 
                 | 
             (
-                IsChar<TRight> extends true 
-                    ? TRight 
-                    : CharSetOf<TRight>
+                IsChar<T_Right> extends true 
+                    ? T_Right 
+                    : CharSetOf<T_Right>
             )
         )
-        : TValue
+        : T_Value
 );
