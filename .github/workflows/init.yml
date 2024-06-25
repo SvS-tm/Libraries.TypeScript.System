@@ -19,14 +19,14 @@ jobs:
       with:
         repository: ${{ github.event.repository.name }}
         owner: ${{ github.repository_owner }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
 
     - name: 'Create release branch'
       uses: svs-tm/libraries.github.actions/github/create-branch@main
       with:
         repository: ${{ github.event.repository.name }}
         owner: ${{ github.repository_owner }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
         from: ${{ steps.default_branch.outputs.name }}
         name: 'release'
       
@@ -35,7 +35,7 @@ jobs:
       with:
         repository: ${{ github.event.repository.name }}
         owner: ${{ github.repository_owner }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
         delete_branch_on_merge: true
         allow_auto_merge: true
 
@@ -45,7 +45,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         repository: ${{ github.event.repository.name }}
         ruleset_path: '${{ github.workspace }}/.github/rulesets/main.json'
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
     
     - name: 'Add repository to team'
       uses: svs-tm/libraries.github.actions/github/add-repository-to-team@main
@@ -54,7 +54,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         repository: ${{ github.event.repository.name }}
         team_slug: 'svs'
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
         permission: 'admin'
     
     - name: 'Get libraries node_id'
@@ -63,12 +63,12 @@ jobs:
       with:
         organization: ${{ github.event.organization.login }}
         project: ${{ vars.PROJECT_LIBRARIES_NUMBER }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
 
     - name: 'Link repository to Libraries'
       uses: svs-tm/libraries.github.actions/github/link-repository-to-project@main
       with:
         project: ${{ steps.libraries.outputs.node_id }}
         repository: ${{ github.event.repository.node_id }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        token: ${{ github.token }}
   

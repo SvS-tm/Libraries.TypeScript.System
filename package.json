@@ -1,13 +1,17 @@
 {
-  "name": "@svs-team/library-template",
+  "name": "@svs-tm/system",
   "version": "0.0.0",
   "author": "SvS team",
-  "description": "Template for TS library",
+  "description": "Bundle of reusable types & utilities",
   "license": "MIT",
   "keywords": [
     "SvS",
-    "template"
+    "system",
+    "utilities"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean-obj": "rimraf -g \"obj\"",
     "clean-bin": "rimraf -g \"bin\"",
@@ -24,7 +28,8 @@
     "build": "pnpm clean-obj && pnpm validate-sources && pnpm copy-sources && pnpm barrels && pnpm validate-output",
     "test": "jest --config src/[tests]/jest.config.ts",
     "generate-release-artifact": "ts-node --project build/tsconfig.scripts.json build/scripts/generate-release-artifact.ts --binPath ./bin --files \"*.tgz|package\"",
-    "pack": "pnpm clean-bin && pnpm compile-declarations && pnpm babel && pnpm license && pnpm copy-package-json && pnpm create-package && pnpm generate-release-artifact"
+    "copy-npmrc": "ts-node --project build/tsconfig.scripts.json build/scripts/copy.ts --source . --destination bin/.release-artifact --include .npmrc",
+    "pack": "pnpm clean-bin && pnpm compile-declarations && pnpm babel && pnpm license && pnpm copy-package-json && pnpm create-package && pnpm copy-npmrc && pnpm generate-release-artifact"
   },
   "dependencies": {
     "reflect-metadata": "^0.2.1",

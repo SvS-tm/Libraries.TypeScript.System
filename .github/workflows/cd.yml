@@ -25,3 +25,12 @@ jobs:
         owner: ${{ github.repository_owner }}
         repository: ${{ github.event.repository.name }}
         path: ${{ github.workspace }}
+    
+    - name: setup
+      uses: svs-tm/libraries.github.actions/typescript/setup@main
+        
+    - name: publish packages
+      uses: svs-tm/libraries.github.actions/github/publish-packages-from-manifest@main
+      with:
+        token: ${{ github.token }}
+        path: ${{ github.workspace }}
