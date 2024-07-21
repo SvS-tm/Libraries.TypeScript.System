@@ -1,4 +1,4 @@
-import { KeyOf } from "./is-key-of";
+import { KeyOf } from "./key-of";
 
 export type IsTuple
 <
