@@ -1,4 +1,4 @@
-import { IsEqual } from "./is-equal";
+import { IsEqual } from "types/reflection/is-equal";
 
 export type AnyIsEqual<T_Left, T_Right, T_True = true, T_False = false> = 
 (

@@ -1,7 +1,7 @@
 import { Primitive } from "types/primitive";
-import { AnyIsEqual } from "./is-any-equal";
-import { IsTuple } from "./is-tuple";
-import { TupleKeys } from "./tuple-keys";
+import { AnyIsEqual } from "types/reflection/is-any-equal";
+import { IsTuple } from "types/reflection/is-tuple";
+import { TupleKeys } from "types/reflection/tuple-keys";
 
 type InternalPathBuilder<T_Key extends string | number, T_Type, T_Filter, T_TraversedTypes> = 
 (

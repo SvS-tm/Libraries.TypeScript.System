@@ -1,8 +1,8 @@
-import { StringAsBigInt } from "./string-as-bigint";
-import { StringAsBoolean } from "./string-as-boolean";
-import { StringAsNull } from "./string-as-null";
-import { StringAsNumber } from "./string-as-number";
-import { StringAsUndefined } from "./string-as-undefined";
+import { StringAsBigInt } from "types/reflection/string-as-bigint";
+import { StringAsBoolean } from "types/reflection/string-as-boolean";
+import { StringAsNull } from "types/reflection/string-as-null";
+import { StringAsNumber } from "types/reflection/string-as-number";
+import { StringAsUndefined } from "types/reflection/string-as-undefined";
 
 /**
  * Parses {@link T_String} to into possible primitive types
