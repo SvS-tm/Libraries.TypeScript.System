@@ -18,7 +18,7 @@
     "clean": "pnpm clean-obj && pnpm clean-bin",
     "validate-sources": "tsc",
     "copy-sources": "ts-node --project build/tsconfig.scripts.json build/scripts/copy.ts --source src --destination obj --exclude \"\\[tests\\]/**\"",
-    "barrels": "barrelsby --config build/barrelsby.json --directory ./obj",
+    "barrels": "barrelsby --config build/barrelsby.json --directory ./obj && ts-node --project build/tsconfig.scripts.json build/scripts/fix-barrels.ts --source ./obj",
     "validate-output": "tsc --project build/tsconfig.validate.json",
     "compile-declarations": "tsc --project build/tsconfig.declarations.json",
     "babel": "babel obj --out-dir bin --config-file ./build/.babelrc --extensions .ts,.tsx --ignore **/*.d.ts --source-maps --copy-files",
