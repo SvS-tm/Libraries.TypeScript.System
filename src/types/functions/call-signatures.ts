@@ -1,4 +1,4 @@
-import { Delegate } from "./delegate";
+import { Delegate } from "types/functions/delegate";
 
 type InternalCallSignatures<T_Callable, T_Aligned> = 
 (

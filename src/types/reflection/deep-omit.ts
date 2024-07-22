@@ -1,6 +1,6 @@
-import { PathOf } from "./path-of";
-import { SafeOmit } from "./safe-omit";
-import { StringAsPrimitive } from "./string-as-primitive";
+import { PathOf } from "types/reflection/path-of";
+import { SafeOmit } from "types/reflection/safe-omit";
+import { StringAsPrimitive } from "types/reflection/string-as-primitive";
 
 type InternalDeepOmit<T_Type, T_Path extends string> = 
 ( 
