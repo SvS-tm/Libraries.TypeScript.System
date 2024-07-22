@@ -1,4 +1,4 @@
-import { IsChar } from "./is-char";
+import { IsChar } from "types/reflection/is-char";
 
 export type CharSetOf<T_Value extends string> = 
 (

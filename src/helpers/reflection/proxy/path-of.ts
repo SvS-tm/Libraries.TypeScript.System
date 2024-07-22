@@ -1,5 +1,5 @@
 import { Selector } from "types/reflection/selector";
-import { createSafeProxyHandler } from "./create-safe-proxy-handler";
+import { createSafeProxyHandler } from "helpers/reflection/proxy/create-safe-proxy-handler";
 import { Key } from "types/reflection/key";
 
 export function pathOf<T_Target, T_Member = any>(selector: Selector<T_Target, T_Member>): Key[]

@@ -1,5 +1,5 @@
 import { isNotEmpty } from "guards/is-not-empty";
-import { ProxyOperation } from "./proxy-operation";
+import { ProxyOperation } from "types/reflection/proxy/proxy-operation";
 
 export class ProxyOperationNotSupportedError extends Error
 {

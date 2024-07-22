@@ -1,1 +1,3 @@
-export type Primitive = null | undefined | string | number | boolean | symbol | bigint;
+import { Emptyable } from "types/emptyable";
+
+export type Primitive = Emptyable<string | number | boolean | symbol | bigint>;

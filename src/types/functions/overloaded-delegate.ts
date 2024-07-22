@@ -1,4 +1,4 @@
-import { Overload } from "./overload";
+import { Overload } from "types/functions/overload";
 
 export type OverloadedDelegate<T_Overloads extends Overload<any[], any>[]> = 
 (
