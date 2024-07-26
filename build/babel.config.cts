@@ -1,5 +1,5 @@
 import type { TransformOptions } from "@babel/core";
-import { dirname, posix, relative, resolve, sep } from "path";
+import { dirname, posix, relative, resolve, sep, isAbsolute } from "path";
 
 export default 
 {
@@ -21,9 +21,16 @@ export default
                 resolvePath: (sourcePath: string, currentFile: string) =>
                 {
                     const base = dirname(currentFile);
-                    const path = resolve(sourcePath);
 
-                    const result = relative(base, path);
+                    if (currentFile.endsWith("index.ts"))
+                        return sourcePath;
+
+                    const path = resolve(sourcePath);
+                    
+                    let result = relative(base, path);
+
+                    if (!result.startsWith("."))
+                        result = `./${result}`;
 
                     const transformedResult = result.split(sep).join(posix.sep);
 
