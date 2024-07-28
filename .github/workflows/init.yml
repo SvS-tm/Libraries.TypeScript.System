@@ -29,24 +29,7 @@ jobs:
         token: ${{ secrets.ORGANIZATION_TOKEN }}
         from: ${{ steps.default_branch.outputs.name }}
         name: 'release'
-      
-    - name: 'Update repository properties'
-      uses: svs-tm/libraries.github.actions/github/update-repository@main
-      with:
-        repository: ${{ github.event.repository.name }}
-        owner: ${{ github.repository_owner }}
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
-        delete_branch_on_merge: true
-        allow_auto_merge: true
 
-    - name: 'Import default ruleset'
-      uses: svs-tm/libraries.github.actions/github/create-ruleset@main
-      with:
-        owner: ${{ github.repository_owner }}
-        repository: ${{ github.event.repository.name }}
-        ruleset_path: '${{ github.workspace }}/.github/rulesets/main.json'
-        token: ${{ secrets.ORGANIZATION_TOKEN }}
-    
     - name: 'Add repository to team'
       uses: svs-tm/libraries.github.actions/github/add-repository-to-team@main
       with:
@@ -71,4 +54,20 @@ jobs:
         project: ${{ steps.libraries.outputs.node_id }}
         repository: ${{ github.event.repository.node_id }}
         token: ${{ secrets.ORGANIZATION_TOKEN }}
-  
+      
+    - name: 'Import default ruleset'
+      uses: svs-tm/libraries.github.actions/github/create-ruleset@main
+      with:
+        owner: ${{ github.repository_owner }}
+        repository: ${{ github.event.repository.name }}
+        ruleset_path: '${{ github.workspace }}/.github/rulesets/main.json'
+        token: ${{ secrets.ORGANIZATION_TOKEN }}  
+
+    - name: 'Update repository properties'
+      uses: svs-tm/libraries.github.actions/github/update-repository@main
+      with:
+        repository: ${{ github.event.repository.name }}
+        owner: ${{ github.repository_owner }}
+        token: ${{ secrets.ORGANIZATION_TOKEN }}
+        delete_branch_on_merge: true
+        allow_auto_merge: true
